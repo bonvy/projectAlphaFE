@@ -1,0 +1,6 @@
+<p-card class="card" [header]="'NOME: '+account()?.bank_name" [subheader]="'ID: '+account()?.id?.toString()" [style]="{ 'max-width': '500px', 'height': '200px' }" (click)="select()" >
+
+  <p>
+    Saldo: {{account()?.balance | currency: account()?.currency}}
+  </p>
+</p-card>

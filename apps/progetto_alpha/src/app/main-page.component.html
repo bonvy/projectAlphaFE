@@ -1,0 +1,54 @@
+
+  <p-tabView [(activeIndex)]="activeIndex" [scrollable]="true" (activeIndexChange)="selectAccount($event)">
+    <p-tabPanel *ngFor="let account of accounts()" [header]="account.bank_name">
+      @if( transcations().length>0){
+        <div style="max-width: 600px;width: 50%; margin: 0 auto; ">
+          <p-dataView  [value]="transcations()" [rows]="10" [paginator]="true">
+            <ng-template pTemplate="list" let-transcations>
+
+              <p-table
+                [value]="transcations"
+                styleClass="p-datatable-striped"
+                [tableStyle]="{'min-width': '20rem'}">
+                <ng-template pTemplate="header">
+                  <tr>
+                    <th>Data</th>
+                    <th>Importo</th>
+                    <th>Categoria</th>
+                  </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-transaction>
+                  <tr>
+                    <td>{{transaction.date | date}}</td>
+                    <td>{{transaction.value | currency: 'EUR'}}</td>
+                    <td>{{transaction.category}}</td>
+                  </tr>
+                </ng-template>
+              </p-table>
+
+
+            </ng-template>
+
+          </p-dataView>
+        </div>
+
+
+      } @else {
+        <div style="width: 50%; margin: 0 auto;"><div style="width: 600px">Seleziona un account per vedere le transazioni </div></div>
+      }
+    </p-tabPanel>
+  </p-tabView>
+  <p-button (click)="connect()">
+    CONNETTI ACCOUNT
+  </p-button>
+
+
+
+
+<div style="max-width: 500px; max-height: 400px">
+  <div class="card">
+    <p-chart type="bar" [data]="data" [options]="options" />
+  </div>
+
+</div>
+

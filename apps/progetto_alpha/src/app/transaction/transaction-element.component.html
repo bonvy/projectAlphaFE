@@ -1,0 +1,7 @@
+<div class="ele" style="display: flex; gap: 10px; align-items: center; max-width: 600px">
+  <div style="margin-left: 10px">{{transaction()?.id}}</div>
+  <div style="margin-left: 10px">{{transaction()?.value | currency: 'EUR'}}</div>
+  <div style="margin-left: auto; margin-right: 10px">{{transaction()?.date | date }}</div>
+</div>
+
+
