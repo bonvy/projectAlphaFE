@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, OnInit, signal } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
 
@@ -30,7 +30,7 @@ export class MainPageComponent implements OnInit{
   data: any;
 
   options: any;
-  constructor(private route: ActivatedRoute,private api: ApiService)  {
+  constructor(private route: ActivatedRoute,private api: ApiService, private cdf: ChangeDetectorRef)  {
   }
 
   ngOnInit(): void {
@@ -85,6 +85,7 @@ export class MainPageComponent implements OnInit{
           }
         ]
       };
+      this.cdf.markForCheck();
     });
   }
 

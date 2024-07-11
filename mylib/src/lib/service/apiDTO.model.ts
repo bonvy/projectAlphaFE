@@ -35,7 +35,7 @@ export interface transactionDTO {
   id_bank: number;
   value: number;
   date: string;
-  categoty: string;
+  categoria: string;
 }
 
 export interface transactionsDTO {
@@ -52,7 +52,7 @@ export function mapFromTransactionsDTO(transactionsDTO: transactionsDTO): transa
       id_bank: tra.id_bank,
       value: tra.value,
       date: tra.date,
-      category: tra.categoty
+      categoria: tra.categoria
     });
   });
 

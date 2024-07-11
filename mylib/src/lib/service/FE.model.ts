@@ -13,7 +13,7 @@ export interface transactionFE{
   id_bank: number;
   value: number;
   date: string;
-  category: string;
+  categoria: string;
 }
 
 
