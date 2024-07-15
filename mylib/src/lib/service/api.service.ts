@@ -14,22 +14,22 @@ import {
   providedIn: 'root'
 })
 export class ApiService {
-
+  private domain = 'https://pujiggyh3t.us-east-1.awsapprunner.com ';
   constructor(private http: HttpClient, private authService: AuthService) { }
 
   register(username: string, password: string) {
-    return this.http.post('http://localhost:3000/users/registration', {username, password} ).pipe(map((res: any) => {this.authService.setJWT(res.jwt); return {login: true} }))
+    return this.http.post(this.domain+'/users/registration', {username, password} ).pipe(map((res: any) => {this.authService.setJWT(res.jwt); return {login: true} }))
   }
   login(username: string, password: string) {
-    return this.http.post('http://localhost:3000/users/login', {username, password} ).pipe(map((res: any) => {this.authService.setJWT(res.jwt); return {code: res.code} }))
+    return this.http.post(this.domain+'/users/login', {username, password} ).pipe(map((res: any) => {this.authService.setJWT(res.jwt); return {code: res.code} }))
   }
 
   insertAccount(code: string) {
-    return this.http.put('http://localhost:3000/users',{code: code}, {headers: {Authorization: 'Bearer '+ this.authService.getJWT()}})
+    return this.http.put(this.domain+'/users',{code: code}, {headers: {Authorization: 'Bearer '+ this.authService.getJWT()}})
   }
 
   getAccounts(){
-    return this.http.get<accountsDTO>('http://localhost:3000/users/accounts',{headers: {Authorization: 'Bearer '+ this.authService.getJWT()}}).pipe(
+    return this.http.get<accountsDTO>(this.domain+'/users/accounts',{headers: {Authorization: 'Bearer '+ this.authService.getJWT()}}).pipe(
       map((res: accountsDTO) => {
         return mapFromAccountsDTO(res)
       })
@@ -37,13 +37,14 @@ export class ApiService {
   }
 
   getTransactions(){
-    return this.http.get<transactionsDTO>('http://localhost:3000/users/transactions',{headers: {Authorization: 'Bearer '+ this.authService.getJWT()}}).pipe(
+    return this.http.get<transactionsDTO>(this.domain+'/users/transactions',{headers: {Authorization: 'Bearer '+ this.authService.getJWT()}}).pipe(
       map((res)=> mapFromTransactionsDTO(res))
     )
   }
 
   getTransactionsFilter(option: number ,id_bank?: number){
-    return this.http.get<transactionFilterDTO>('http://localhost:3000/users/transactions/filter', {params: {id_bank: id_bank || -1 , option: option }, headers: {Authorization: 'Bearer '+ this.authService.getJWT()} } ).pipe(
+
+    return this.http.get<transactionFilterDTO>(this.domain + '/users/transactions/filter', {params: {id_bank: id_bank || -1 , option: option }, headers: {Authorization: 'Bearer '+ this.authService.getJWT()} } ).pipe(
       map((res)=> {
         return mapFromTransactoinsFilterDTO(res, option)
       })

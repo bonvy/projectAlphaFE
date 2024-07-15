@@ -1,0 +1,26 @@
+/* Ensure the sidebar is always visible */
+p-sidebar {
+  position: fixed !important;
+  width: 250px !important;
+}
+
+/* Style the sidebar menu */
+p-sidebar ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+p-sidebar li {
+  padding: 10px;
+}
+
+p-sidebar li a {
+  text-decoration: none;
+  color: #000;
+}
+
+/* Adjust main content */
+.main-content {
+  margin-left: 250px; /* Adjust according to sidebar width */
+  padding: 1rem;
+}

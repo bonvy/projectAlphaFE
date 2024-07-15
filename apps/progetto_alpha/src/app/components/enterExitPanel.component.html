@@ -1,0 +1,6 @@
+<p-card [header]="isEnter() ? 'Entrate 7gg' : 'Uscite 7gg'" [style]="{color: color()}" >
+  <p class="m-0" [style]="{color: color(), 'font-size': '30px'}">
+    {{value()}}
+    <i [class]="isEnter() ? 'pi pi-arrow-up' : 'pi pi-arrow-down'" style="font-size: 1.5rem"></i>
+  </p>
+</p-card>
