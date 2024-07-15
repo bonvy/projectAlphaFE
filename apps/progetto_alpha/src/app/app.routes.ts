@@ -1,7 +1,6 @@
 import { Route } from '@angular/router';
-import { AppComponent } from './app.component';
 import { AuthGuard } from 'mylib/src/lib/service/auth-redirect.guard';
-import { LoginComponent } from './login/login.component';
+import { LoginComponent } from './components/login/login.component';
 import { MainPageComponent } from './main-page.component';
 
 

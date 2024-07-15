@@ -61,30 +61,51 @@ export function mapFromTransactionsDTO(transactionsDTO: transactionsDTO): transa
 
 
 export interface dataAggregateDTO{
-  sum: number,
-  mese: string
+  mounth?: number,
+  year?: number
+  entrate: number,
+  uscite: number
 }
 
 export interface transactionFilterDTO{
-  entrate: dataAggregateDTO[],
-  uscite: dataAggregateDTO[]
+  data: dataAggregateDTO[];
 }
 
-export function mapFromTransactoinsFilterDTO(data: transactionFilterDTO): transactionFilterAggregate{
+export function mapFromTransactoinsFilterDTO(data: transactionFilterDTO, option: number): transactionFilterAggregate{
   const bankValue: transactionFilterAggregate = {entrate: [], uscite:[]};
 
-  data.entrate.forEach((data) =>{
+  data.data.forEach((data) =>{
 
 
+  if(data?.mounth!=null){
+    bankValue.entrate.push({
+      sum: data.entrate,
+      mese: data.mounth
+    });
+  }else{
+    bankValue.entrate.push({
+      sum: data.entrate,
+      year: data.year
+    });
+  }
 
-    bankValue.entrate.push({sum: data.sum, mese: Number(data.mese)-1});
   })
 
-  data.uscite.forEach((data) =>{
+  data.data.forEach((data) =>{
 
 
 
-    bankValue.uscite.push({sum: data.sum, mese: Number(data.mese)-1});
+    if(data?.mounth!=null){
+      bankValue.uscite.push({
+        sum: data.uscite,
+        mese: data.mounth
+      });
+    }else{
+      bankValue.uscite.push({
+        sum: data.uscite,
+        year: data.year
+      });
+    }
   })
 
   return bankValue;

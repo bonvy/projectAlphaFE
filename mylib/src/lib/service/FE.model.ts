@@ -19,7 +19,8 @@ export interface transactionFE{
 
 export interface transactionFilter{
   sum: number,
-  mese: number
+  mese?: number,
+  year?: number
 }
 
 export interface transactionFilterAggregate {

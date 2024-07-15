@@ -1,55 +1,38 @@
-:host ::ng-deep {
-  .p-scroller-viewport {
-    flex: none;
-  }
+
+p-sidebar {
+  position: fixed !important;
+  width: 250px !important;
 }
 
-/* styles.css */
-.layout-container {
+body {
   display: flex;
-  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   height: 100vh;
+  margin: 0;
+  font-family: Arial, sans-serif;
 }
 
 .grid-container {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  padding: 16px;
-  box-sizing: border-box;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: auto auto auto;
+  gap: 10px;
+
+
+  background-color: #f9f9f9;
+  padding: 10px;
+  margin: 25px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-.main-content {
-  background: #f0f0f0;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  padding: 16px;
+.item {
+  padding: 20px;
+  text-align: center;
+  color: white;
 }
 
-.transparent-background {
-  align-items: center;
-  display: flex;
-  height: 225px;
-  margin-bottom: 30px;
-  background: rgba(154, 151, 151, 0.27); /* Colore grigio semi-trasparente */
-
-  border-radius: 15px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+.item5 {
+  grid-column: span 2; /* Make the last row span both columns */
 }
 
-.transparent-background::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: gray;
-  opacity: 0.5; /* Opacità al background */
-  z-index: -1; /* Posiziona dietro il contenuto */
-}

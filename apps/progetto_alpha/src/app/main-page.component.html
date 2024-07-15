@@ -1,9 +1,54 @@
+<app-sidebar (selectedAccount)="selectAccount($event)"></app-sidebar>
+<div style="margin-left: 300px">
 
-  <p-tabView [(activeIndex)]="activeIndex" [scrollable]="true" (activeIndexChange)="selectAccount($event)">
-    <p-tabPanel *ngFor="let account of accounts()" [header]="account.bank_name">
-      @if( transcations().length>0){
-        <div style="max-width: 600px;width: 50%; margin: 0 auto; ">
-          <p-dataView  [value]="transcations()" [rows]="10" [paginator]="true">
+@if(accountSelect()!==undefined){
+
+  <div class="grid-container">
+    <div class="item item1">
+      <app-enter-exit-panel [value]="entrate" [isEnter]="true" >
+
+      </app-enter-exit-panel>
+    </div>
+    <div class="item item2">
+      <app-enter-exit-panel [value]="uscite" [isEnter]="false" >
+
+      </app-enter-exit-panel>
+    </div>
+    <div class="item item3">
+      <div>
+        <p-button
+          label="Current Year"
+          class="mr-2"
+          pStyleClass=".box"
+          (click)="fetchTransaction(accounts()[activeIndex].id,0)"
+          enterFromClass="hidden"
+          enterActiveClass="fadein" />
+        <p-button
+          label="2y"
+          pStyleClass=".box"
+          (click)="fetchTransaction(accountSelect()?.id!,1)"
+          leaveActiveClass="fadeout"
+          leaveToClass="hidden" />
+        <p-button
+          label="3y"
+          pStyleClass=".box"
+          (click)="fetchTransaction(accountSelect()?.id!,2)"
+          leaveActiveClass="fadeout"
+          leaveToClass="hidden" />
+      </div>
+      <div style="max-width: 500px; max-height: 400px">
+        <div class="card">
+          <p-chart type="bar" [data]="data" [options]="options" />
+        </div>
+
+      </div>
+    </div>
+    <div class="item item4">Item 4</div>
+    <div class="item item5">
+      <div style="max-width: 600px;width: 50%; margin: 0 auto; ">
+        @if (transcations()!==undefined) {
+
+          <p-dataView [value]="transcations()!" [rows]="10" [paginator]="true">
             <ng-template pTemplate="list" let-transcations>
 
               <p-table
@@ -19,9 +64,9 @@
                 </ng-template>
                 <ng-template pTemplate="body" let-transaction>
                   <tr>
-                    <td>{{transaction.date | date}}</td>
-                    <td>{{transaction.value | currency: 'EUR'}}</td>
-                    <td>{{transaction.categoria}}</td>
+                    <td>{{ transaction.date | date }}</td>
+                    <td>{{ transaction.value | currency: 'EUR' }}</td>
+                    <td>{{ transaction.categoria }}</td>
                   </tr>
                 </ng-template>
               </p-table>
@@ -30,25 +75,33 @@
             </ng-template>
 
           </p-dataView>
-        </div>
 
 
-      } @else {
-        <div style="width: 50%; margin: 0 auto;"><div style="width: 600px">Seleziona un account per vedere le transazioni </div></div>
-      }
-    </p-tabPanel>
-  </p-tabView>
-  <p-button (click)="connect()">
-    CONNETTI ACCOUNT
-  </p-button>
-
-
-
-
-<div style="max-width: 500px; max-height: 400px">
-  <div class="card">
-    <p-chart type="bar" [data]="data" [options]="options" />
+        } @else {
+          <p-table [value]="[1,2,3,4,5]" [tableStyle]="{ 'min-width': '50rem' }">
+            <ng-template pTemplate="header">
+              <tr>
+                <th>Data</th>
+                <th>Importo</th>
+                <th>Categoria</th>
+              </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-product>
+              <tr>
+                <td>
+                  <p-skeleton />
+                </td>
+                <td>
+                  <p-skeleton />
+                </td>
+                <td>
+                  <p-skeleton />
+                </td>
+              </tr>
+            </ng-template>
+          </p-table>
+        }
+      </div>
+    </div>
   </div>
-
-</div>
-
+}

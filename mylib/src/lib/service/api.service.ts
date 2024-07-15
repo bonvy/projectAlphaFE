@@ -42,10 +42,10 @@ export class ApiService {
     )
   }
 
-  getTransactionsFilter(id_bank: number){
-    return this.http.get<transactionFilterDTO>('http://localhost:3000/users/transactions/filter', {params: {id_bank: id_bank, }, headers: {Authorization: 'Bearer '+ this.authService.getJWT()} } ).pipe(
+  getTransactionsFilter(option: number ,id_bank?: number){
+    return this.http.get<transactionFilterDTO>('http://localhost:3000/users/transactions/filter', {params: {id_bank: id_bank || -1 , option: option }, headers: {Authorization: 'Bearer '+ this.authService.getJWT()} } ).pipe(
       map((res)=> {
-        return mapFromTransactoinsFilterDTO(res)
+        return mapFromTransactoinsFilterDTO(res, option)
       })
     )
   }
