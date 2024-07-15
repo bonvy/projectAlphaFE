@@ -14,7 +14,7 @@ import {
   providedIn: 'root'
 })
 export class ApiService {
-  private domain = 'https://pujiggyh3t.us-east-1.awsapprunner.com ';
+  private domain = 'https://pujiggyh3t.us-east-1.awsapprunner.com';
   constructor(private http: HttpClient, private authService: AuthService) { }
 
   register(username: string, password: string) {
