@@ -35,4 +35,10 @@ export class SidebarComponent implements OnInit{
   selectAccount(account: accountFE){
     this.selectedAccount.emit(account)
   }
+
+  connect(){
+    window.location.replace('https://prova-sandbox.biapi.pro/2.0/auth/webview/connect' +
+      '?client_id=63430452' +
+      '&redirect_uri=https://main.d2yw5v0xgpzh27.amplifyapp.com/')
+  }
 }

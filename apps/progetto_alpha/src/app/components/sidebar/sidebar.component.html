@@ -10,10 +10,12 @@
         <i [class]=" loading()? 'pi pi-spin pi-spinner' : !showAccouts()? 'pi pi-angle-down':'pi pi-angle-up' " style="font-size: 0.90rem"> </i>
       </div>
       <ul>
-        @if(showAccouts()){
+        @if(showAccouts() && accounts().length>0){
           @for (acc of accounts(); track acc) {
             <li (click)="selectAccount(acc)" style="color: #6FB8CF; font-weight: bold">{{acc.bank_name}}</li>
           }
+        }@else{
+          <li (click)="connect()" style="color: #6FB8CF; font-weight: bold">CONNETTI ACCOUNT</li>
         }
 
       </ul>
