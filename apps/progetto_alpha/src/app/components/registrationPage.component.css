@@ -1,0 +1,25 @@
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+
+}
+
+input {
+  display: block;
+  margin: 30px 0;
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+:host {
+  display: block;
+  max-width: 200vw;
+  max-height: 90vh;
+  overflow: hidden;
+}
+
+
+

@@ -4,6 +4,7 @@ import { MainPageComponent } from './main-page.component';
 import { LoginComponent } from './components/login/login.component';
 import { ServiceModule } from '@progetto-alpha/mylib';
 import { AuthGuard } from 'mylib/src/lib/service/auth-redirect.guard';
+import { RegistrationPageComponent } from './components/registrationPage.component';
 
 export const appRoutes: Route[] = [
   {
@@ -19,6 +20,10 @@ export const appRoutes: Route[] = [
     path: 'mainPage',
     canActivate: [AuthGuard],
     component:  MainPageComponent
+  },
+  {
+    path: 'registration',
+    component: RegistrationPageComponent
   }
 ];
 

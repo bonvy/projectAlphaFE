@@ -55,4 +55,8 @@ export class LoginComponent implements OnDestroy, OnInit{
     }
 
   }
+
+  goToRegistration(){
+    this.router.navigate(['/registration']);
+  }
 }

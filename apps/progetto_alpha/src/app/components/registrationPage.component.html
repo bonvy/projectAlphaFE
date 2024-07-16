@@ -1,13 +1,9 @@
 
-<p-card header="LOGIN" class="container">
-  @if(showError){
-    <div class="card"  style="color: brown">
-      Errore
-    </div>
-  }
+<p-card header="REGISTRATI" class="container">
+
 
   <ng-template pTemplate="content">
-    <form [formGroup]="form" (keydown.enter)="login()" >
+    <form [formGroup]="form" (keydown.enter)="registration()" >
       <p-floatLabel>
         <input pInputText formControlName="username" />
         <label>Username</label>
@@ -18,9 +14,9 @@
         <label>Passoword</label>
       </p-floatLabel>
     </form>
-    <p-button  label="ACCEDI" (click)="login()" />
+    <p-button  label="ACCEDI" (click)="registration()" />
   </ng-template>
-  <p-button  label="REGISTRATI" (click)="goToRegistration()" />
+
 </p-card>
 
 
