@@ -1,8 +1,9 @@
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit, signal } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnDestroy, OnInit, signal } from '@angular/core';
 
 import { ActivatedRoute } from '@angular/router';
 import { accountFE, getMesi, transactionFE } from '@progetto-alpha/mylib';
 import { ApiService } from 'mylib/src/lib/service/api.service';
+import { Subject, takeUntil } from 'rxjs';
 
 
 @Component({
@@ -11,24 +12,29 @@ import { ApiService } from 'mylib/src/lib/service/api.service';
   styleUrl: './main-page.component.css',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class MainPageComponent implements OnInit{
+export class MainPageComponent implements OnInit, OnDestroy{
   documentStyle = getComputedStyle(document.documentElement);
 
   transcations = signal<transactionFE[] |undefined >(undefined)
   activeIndex = 0;
   accounts = signal<accountFE[]>([]);
   accountSelect = signal<accountFE| undefined >(undefined)
+  onDestroy$ = new Subject<void>();
   data: any;
-
   options: any;
   constructor(private route: ActivatedRoute,private api: ApiService, private cdf: ChangeDetectorRef)  {
   }
+
+  ngOnDestroy(): void {
+        this.onDestroy$.next();
+        this.onDestroy$.complete();
+    }
 
   ngOnInit(): void {
     this.route.queryParamMap.subscribe(params => {
       const code = params.get('code');
       if(code){
-        this.api.insertAccount(code).subscribe()
+        this.api.insertAccount(code).pipe(takeUntil(this.onDestroy$)).subscribe()
       }
     });
 
@@ -41,7 +47,7 @@ export class MainPageComponent implements OnInit{
   }
 
   fetchTransaction(id_bank: number, option: number){
-    this.api.getTransactionsFilter(option, id_bank ).subscribe((data) =>{
+    this.api.getTransactionsFilter(option, id_bank ).pipe(takeUntil(this.onDestroy$)).subscribe((data) =>{
       const mesi: number[]=[];
       const anni: string[]=[]
       const entrate: number[] =[]
@@ -118,7 +124,7 @@ export class MainPageComponent implements OnInit{
     this.transcations.set(undefined);
     if(account!=null){
       this.accountSelect.set(account);
-      this.api.getTransactions().subscribe((res) =>{
+      this.api.getTransactions().pipe(takeUntil(this.onDestroy$)).subscribe((res) =>{
         this.transcations.set(res.filter((t)=>t.id_bank === account.id))
         this.cdf.markForCheck();
       });
