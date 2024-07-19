@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
-    "serve:project": "npx nx serve progetto_alpha"
+    "serve:project": "npx nx serve progetto_alpha --configuration=development"
   },
   "private": true,
   "dependencies": {

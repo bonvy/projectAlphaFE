@@ -9,13 +9,17 @@ import {
   transactionFilterDTO,
   transactionsDTO
 } from './apiDTO.model';
+import {environment } from '../../../../apps/progetto_alpha/src/environment/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ApiService {
+  private env = environment;
   private domain = 'https://pujiggyh3t.us-east-1.awsapprunner.com';
-  constructor(private http: HttpClient, private authService: AuthService) { }
+  constructor(private http: HttpClient, private authService: AuthService) {
+    console.log(this.env)
+  }
 
   register(username: string, password: string) {
     return this.http.post(this.domain+'/users/registration', {username, password} ).pipe(map((res: any) => {this.authService.setJWT(res.jwt); return {login: true} }))
