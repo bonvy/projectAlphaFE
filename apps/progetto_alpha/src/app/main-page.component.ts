@@ -1,10 +1,10 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnDestroy, OnInit, signal } from '@angular/core';
 
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { accountFE, getMesi, transactionFE } from '@progetto-alpha/mylib';
 import { ApiService } from 'mylib/src/lib/service/api.service';
 import { Subject, takeUntil } from 'rxjs';
-
+import {environment} from '../environment/environment';
 
 @Component({
   selector: 'app-main-page',
@@ -14,7 +14,7 @@ import { Subject, takeUntil } from 'rxjs';
 })
 export class MainPageComponent implements OnInit, OnDestroy{
   documentStyle = getComputedStyle(document.documentElement);
-
+  env = environment;
   transcations = signal<transactionFE[] |undefined >(undefined)
   activeIndex = 0;
   accounts = signal<accountFE[]>([]);
@@ -22,7 +22,7 @@ export class MainPageComponent implements OnInit, OnDestroy{
   onDestroy$ = new Subject<void>();
   data: any;
   options: any;
-  constructor(private route: ActivatedRoute,private api: ApiService, private cdf: ChangeDetectorRef)  {
+  constructor(private route: ActivatedRoute,private api: ApiService, private cdf: ChangeDetectorRef, private router: Router)  {
   }
 
   ngOnDestroy(): void {
@@ -35,7 +35,14 @@ export class MainPageComponent implements OnInit, OnDestroy{
       const code = params.get('code');
       if(code){
         this.api.insertAccount(code).pipe(takeUntil(this.onDestroy$)).subscribe()
+
       }
+      this.router.navigate(['/mainPage'], {
+        queryParams: {},
+        queryParamsHandling: 'merge', // mantiene i parametri di query esistenti
+        replaceUrl: true
+      });
+
     });
 
   }
@@ -43,7 +50,7 @@ export class MainPageComponent implements OnInit, OnDestroy{
   connect(){
     window.location.replace('https://prova-sandbox.biapi.pro/2.0/auth/webview/connect' +
       '?client_id=63430452' +
-      '&redirect_uri=http://localhost:4200/')
+      '&redirect_uri='+ !this.env.production ? 'http://localhost:4200/': 'https://main.d2yw5v0xgpzh27.amplifyapp.com')
   }
 
   fetchTransaction(id_bank: number, option: number){
