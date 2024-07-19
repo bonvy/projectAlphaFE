@@ -45,8 +45,8 @@
           "extractLicenses": false,
           "sourceMap": true,
           "fileReplacements": [{
-            "replace": "src/environment/environment.ts",
-            "with": "src/environment/environment.dev.ts"
+            "replace": "apps/progetto_alpha/src/environment/environment.ts",
+            "with": "apps/progetto_alpha/src/environment/environment.dev.ts"
           }]
         }
       },

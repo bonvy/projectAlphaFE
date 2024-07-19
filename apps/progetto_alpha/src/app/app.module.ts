@@ -27,19 +27,25 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RippleModule } from 'primeng/ripple';
 import { EnterExitPanelComponent } from './components/enterExit/enterExitPanel.component';
 import { RegistrationPageComponent } from './components/registrationPage.component';
+import {environment} from '../environment/environment';
 
+const imports =[
+  CommonModule,
+  ServiceModule.forRoot({
+    apiUrl: environment.apiUrl
+  })
+];
 
 @NgModule({
   declarations: [SidebarComponent, AppComponent, MainPageComponent, TransactionComponent, LoginComponent, AccountBankComponent, EnterExitPanelComponent, RegistrationPageComponent],
   imports: [
-    CommonModule,
+    ...imports,
     BrowserModule,
     BrowserAnimationsModule,
     RippleModule,
     ApproutingModule,
     ButtonModule,
     InputTextareaModule,
-    ServiceModule,
     CardModule,
     FloatLabelModule,
     ReactiveFormsModule,

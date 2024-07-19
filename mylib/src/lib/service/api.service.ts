@@ -1,6 +1,6 @@
-import { Injectable } from '@angular/core';
+import { Inject, Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { map, Observable } from 'rxjs';
+import { map } from 'rxjs';
 import { AuthService } from './auth.service';
 import {
   accountsDTO,
@@ -9,16 +9,17 @@ import {
   transactionFilterDTO,
   transactionsDTO
 } from './apiDTO.model';
-import {environment } from '../../../../apps/progetto_alpha/src/environment/environment';
+
+import { API_MODULE_CONFIGURATION, Configuration } from './configuration';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ApiService {
-  private env = environment;
-  private domain = 'https://pujiggyh3t.us-east-1.awsapprunner.com';
-  constructor(private http: HttpClient, private authService: AuthService) {
-    console.log(this.env)
+
+  private domain: string;
+  constructor(private http: HttpClient, private authService: AuthService, @Inject(API_MODULE_CONFIGURATION) private config: Configuration) {
+    this.domain = this.config.apiUrl
   }
 
   register(username: string, password: string) {
