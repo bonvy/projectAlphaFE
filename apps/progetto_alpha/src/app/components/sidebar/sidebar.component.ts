@@ -1,7 +1,8 @@
 import { ChangeDetectorRef, Component, OnInit, output, signal } from '@angular/core';
 import { accountFE } from '@progetto-alpha/mylib';
 import { ApiService } from 'mylib/src/lib/service/api.service';
-import {environment } from '../../../environment/environment';
+
+
 
 
 @Component({
@@ -10,7 +11,7 @@ import {environment } from '../../../environment/environment';
   styleUrl: './sidebar.component.css'
 })
 export class SidebarComponent implements OnInit{
-  env=environment;
+
   sidebarVisible = true;
   constructor(private cdf: ChangeDetectorRef, private api: ApiService) {
   }
@@ -36,14 +37,8 @@ export class SidebarComponent implements OnInit{
   }
 
   connect(){
-    if(!this.env.production){
-      window.location.replace('https://prova-sandbox.biapi.pro/2.0/auth/webview/connect' +
-        '?client_id=63430452' +
-        '&redirect_uri=http://localhost:4200/')
-    }else{
-      window.location.replace('https://prova-sandbox.biapi.pro/2.0/auth/webview/connect' +
-        '?client_id=63430452' +
-        '&redirect_uri=https://main.d2yw5v0xgpzh27.amplifyapp.com')
-    }
+    window.location.replace('https://prova-sandbox.biapi.pro/2.0/auth/webview/connect' +
+      '?client_id=63430452' +
+      '&redirect_uri=https://main.d2yw5v0xgpzh27.amplifyapp.com/')
   }
 }
