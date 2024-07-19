@@ -6,6 +6,9 @@ import { ApiService } from './api.service';
 import { AuthGuard } from './auth-redirect.guard';
 import { API_MODULE_CONFIGURATION, Configuration } from './configuration';
 import { AuthInterceptor } from './interceptors/auth-interceptor.interceptor';
+import * as ts from '@schematics/angular/third_party/github.com/Microsoft/TypeScript/lib/typescript';
+import Errors = ts.server.Errors;
+import { ErrorInterceptor } from './interceptors/error.interceptor';
 
 
 
@@ -30,6 +33,11 @@ export class ServiceModule {
         {
           provide: HTTP_INTERCEPTORS,
           useClass: AuthInterceptor,
+          multi: true
+        },
+        {
+          provide: HTTP_INTERCEPTORS,
+          useClass: ErrorInterceptor,
           multi: true
         },
         {provide: API_MODULE_CONFIGURATION, useValue: config},

@@ -27,4 +27,9 @@ export class AuthService {
     return this.jwt;
   }
 
+  deleteJWT(){
+    this.jwt=undefined;
+    this.cookieService.delete('jwt');
+  }
+
 }
