@@ -39,7 +39,6 @@ export class MainPageComponent implements OnInit, OnDestroy{
       }
       this.router.navigate(['/mainPage'], {
         queryParams: {},
-        queryParamsHandling: 'merge', // mantiene i parametri di query esistenti
         replaceUrl: true
       });
 
@@ -47,11 +46,7 @@ export class MainPageComponent implements OnInit, OnDestroy{
 
   }
 
-  connect(){
-    window.location.replace('https://prova-sandbox.biapi.pro/2.0/auth/webview/connect' +
-      '?client_id=63430452' +
-      '&redirect_uri='+ !this.env.production ? 'http://localhost:4200/': 'https://main.d2yw5v0xgpzh27.amplifyapp.com')
-  }
+
 
   fetchTransaction(id_bank: number, option: number){
     this.api.getTransactionsFilter(option, id_bank ).pipe(takeUntil(this.onDestroy$)).subscribe((data) =>{
