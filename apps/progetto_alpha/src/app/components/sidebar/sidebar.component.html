@@ -1,10 +1,10 @@
 <p-sidebar [(visible)]="sidebarVisible" position="left" [modal]="false" [baseZIndex]="1000" [showCloseIcon]="false"
            [style]="{width: '300px', 'background-color': '#023E8A'}">
   <ul>
-    <li style="color: #6FB8CF; font-weight: bold">GENERALE</li>
+    <li style="color: #6FB8CF; font-weight: bold; cursor: pointer;">GENERALE</li>
     <li>
 
-      <div class="flex-container" (click)="showAccountsNow()" style="color: #6FB8CF; font-weight: bold">
+      <div class="flex-container" (click)="showAccountsNow()" style="color: #6FB8CF; font-weight: bold; cursor: pointer;">
         <i class="pi pi-wallet"></i>
         ACCOUNTS BANK
         <i [class]=" loading()? 'pi pi-spin pi-spinner' : !showAccouts()? 'pi pi-angle-down':'pi pi-angle-up' " style="font-size: 0.90rem"> </i>
@@ -12,10 +12,10 @@
       <ul>
         @if(showAccouts() && accounts().length>0){
           @for (acc of accounts(); track acc) {
-            <li (click)="selectAccount(acc)" style="color: #6FB8CF; font-weight: bold">{{acc.bank_name}}</li>
+            <li (click)="selectAccount(acc)" style="color: #6FB8CF; font-weight: bold; cursor: pointer;">{{acc.bank_name}}</li>
           }
         }@else{
-          <li (click)="connect()" style="color: #6FB8CF; font-weight: bold">CONNETTI ACCOUNT</li>
+          <li (click)="connect()" style="color: #6FB8CF; font-weight: bold; cursor: pointer;">CONNETTI ACCOUNT</li>
         }
 
       </ul>
