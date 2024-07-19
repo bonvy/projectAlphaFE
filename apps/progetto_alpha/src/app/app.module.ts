@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, isDevMode } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AppComponent } from './app.component';
 import { ServiceModule } from '@progetto-alpha/mylib';
@@ -28,6 +28,7 @@ import { RippleModule } from 'primeng/ripple';
 import { EnterExitPanelComponent } from './components/enterExit/enterExitPanel.component';
 import { RegistrationPageComponent } from './components/registrationPage.component';
 import {environment} from '../environment/environment';
+import { ServiceWorkerModule } from '@angular/service-worker';
 
 
 const imports =[
@@ -59,7 +60,8 @@ const imports =[
     StyleClassModule,
     ChartModule,
     RouterOutlet,
-    InputTextModule
+    InputTextModule,
+
   ],
   providers: [
 

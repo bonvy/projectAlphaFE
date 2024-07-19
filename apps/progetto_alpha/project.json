@@ -8,12 +8,16 @@
   "targets": {
     "build": {
       "executor": "@angular-devkit/build-angular:application",
-      "outputs": ["{options.outputPath}"],
+      "outputs": [
+        "{options.outputPath}"
+      ],
       "options": {
         "outputPath": "dist/apps/progetto_alpha",
         "index": "apps/progetto_alpha/src/index.html",
         "browser": "apps/progetto_alpha/src/main.ts",
-        "polyfills": ["zone.js"],
+        "polyfills": [
+          "zone.js"
+        ],
         "tsConfig": "apps/progetto_alpha/tsconfig.app.json",
         "assets": [
           {
@@ -21,7 +25,9 @@
             "input": "apps/progetto_alpha/public"
           }
         ],
-        "styles": ["apps/progetto_alpha/src/styles.css"],
+        "styles": [
+          "apps/progetto_alpha/src/styles.css"
+        ],
         "scripts": []
       },
       "configurations": {
@@ -38,16 +44,21 @@
               "maximumError": "4kb"
             }
           ],
-          "outputHashing": "all"
+          "outputHashing": "all",
+          "serviceWorker": true,
+          "ngswConfigPath": "apps/progetto_alpha/ngsw-config.json"
+
         },
         "development": {
           "optimization": false,
           "extractLicenses": false,
           "sourceMap": true,
-          "fileReplacements": [{
-            "replace": "apps/progetto_alpha/src/environment/environment.ts",
-            "with": "apps/progetto_alpha/src/environment/environment.dev.ts"
-          }]
+          "fileReplacements": [
+            {
+              "replace": "apps/progetto_alpha/src/environment/environment.ts",
+              "with": "apps/progetto_alpha/src/environment/environment.dev.ts"
+            }
+          ]
         }
       },
       "defaultConfiguration": "production"
@@ -75,7 +86,9 @@
     },
     "test": {
       "executor": "@nx/jest:jest",
-      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "outputs": [
+        "{workspaceRoot}/coverage/{projectRoot}"
+      ],
       "options": {
         "jestConfig": "apps/progetto_alpha/jest.config.ts"
       }
