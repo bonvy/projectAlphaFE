@@ -23,6 +23,7 @@ export class AuthService {
     }
   }
   getJWT(){
+    this.jwt ?this.setJWT(this.jwt) : null;
     return this.jwt;
   }
 

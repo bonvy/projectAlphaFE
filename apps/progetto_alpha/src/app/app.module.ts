@@ -29,6 +29,7 @@ import { EnterExitPanelComponent } from './components/enterExit/enterExitPanel.c
 import { RegistrationPageComponent } from './components/registrationPage.component';
 import {environment} from '../environment/environment';
 
+
 const imports =[
   CommonModule,
   ServiceModule.forRoot({
@@ -60,7 +61,9 @@ const imports =[
     RouterOutlet,
     InputTextModule
   ],
-  providers: [],
+  providers: [
+
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {

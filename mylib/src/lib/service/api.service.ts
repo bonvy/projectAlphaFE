@@ -30,11 +30,11 @@ export class ApiService {
   }
 
   insertAccount(code: string) {
-    return this.http.put(this.domain+'/users',{code: code}, {headers: {Authorization: 'Bearer '+ this.authService.getJWT()}})
+    return this.http.put(this.domain+'/users',{code: code})
   }
 
   getAccounts(){
-    return this.http.get<accountsDTO>(this.domain+'/users/accounts',{headers: {Authorization: 'Bearer '+ this.authService.getJWT()}}).pipe(
+    return this.http.get<accountsDTO>(this.domain+'/users/accounts',).pipe(
       map((res: accountsDTO) => {
         return mapFromAccountsDTO(res)
       })
@@ -42,14 +42,14 @@ export class ApiService {
   }
 
   getTransactions(){
-    return this.http.get<transactionsDTO>(this.domain+'/users/transactions',{headers: {Authorization: 'Bearer '+ this.authService.getJWT()}}).pipe(
+    return this.http.get<transactionsDTO>(this.domain+'/users/transactions').pipe(
       map((res)=> mapFromTransactionsDTO(res))
     )
   }
 
   getTransactionsFilter(option: number ,id_bank?: number){
 
-    return this.http.get<transactionFilterDTO>(this.domain + '/users/transactions/filter', {params: {id_bank: id_bank || -1 , option: option }, headers: {Authorization: 'Bearer '+ this.authService.getJWT()} } ).pipe(
+    return this.http.get<transactionFilterDTO>(this.domain + '/users/transactions/filter', {params: {id_bank: id_bank || -1 , option: option } } ).pipe(
       map((res)=> {
         return mapFromTransactoinsFilterDTO(res, option)
       })
