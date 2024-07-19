@@ -20,7 +20,7 @@
           label="Current Year"
           class="mr-2"
           pStyleClass=".box"
-          (click)="fetchTransaction(accounts()[activeIndex].id,0)"
+          (click)="fetchTransaction(accountSelect()?.id!,0)"
           enterFromClass="hidden"
           enterActiveClass="fadein" />
         <p-button
