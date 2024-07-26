@@ -45,8 +45,8 @@
             }
           ],
           "outputHashing": "all",
-          "serviceWorker": true,
-          "ngswConfigPath": "apps/progetto_alpha/ngsw-config.json"
+
+
 
         },
         "development": {
