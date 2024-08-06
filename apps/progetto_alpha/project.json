@@ -45,9 +45,7 @@
             }
           ],
           "outputHashing": "all",
-
-
-
+          "serviceWorker": "apps/progetto_alpha/ngsw-config.json"
         },
         "development": {
           "optimization": false,
