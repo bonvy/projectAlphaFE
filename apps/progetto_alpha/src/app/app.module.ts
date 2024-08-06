@@ -28,11 +28,34 @@ import { RippleModule } from 'primeng/ripple';
 import { EnterExitPanelComponent } from './components/enterExit/enterExitPanel.component';
 import { RegistrationPageComponent } from './components/registrationPage.component';
 import {environment} from '../environment/environment';
-import { ServiceWorkerModule } from '@angular/service-worker';
+
+import { TranslocoRootModule } from './transloco/transloco.module';
+
+
 
 
 const imports =[
   CommonModule,
+  BrowserModule,
+  BrowserAnimationsModule,
+  RippleModule,
+  ApproutingModule,
+  ButtonModule,
+  InputTextareaModule,
+  CardModule,
+  FloatLabelModule,
+  ReactiveFormsModule,
+  Button,
+  SidebarModule,
+  TabViewModule,
+  DataViewModule,
+  TableModule,
+  SkeletonModule,
+  StyleClassModule,
+  ChartModule,
+  RouterOutlet,
+  InputTextModule,
+  TranslocoRootModule,
   ServiceModule.forRoot({
     apiUrl: environment.apiUrl
   })
@@ -42,29 +65,8 @@ const imports =[
   declarations: [SidebarComponent, AppComponent, MainPageComponent, TransactionComponent, LoginComponent, AccountBankComponent, EnterExitPanelComponent, RegistrationPageComponent],
   imports: [
     ...imports,
-    BrowserModule,
-    BrowserAnimationsModule,
-    RippleModule,
-    ApproutingModule,
-    ButtonModule,
-    InputTextareaModule,
-    CardModule,
-    FloatLabelModule,
-    ReactiveFormsModule,
-    Button,
-    SidebarModule,
-    TabViewModule,
-    DataViewModule,
-    TableModule,
-    SkeletonModule,
-    StyleClassModule,
-    ChartModule,
-    RouterOutlet,
-    InputTextModule,
-
   ],
   providers: [
-
   ],
   bootstrap: [AppComponent]
 })

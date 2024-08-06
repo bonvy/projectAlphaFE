@@ -5,6 +5,7 @@ import { accountFE, getMesi, transactionFE } from '@progetto-alpha/mylib';
 import { ApiService } from 'mylib/src/lib/service/api.service';
 import { Subject, takeUntil } from 'rxjs';
 import {environment} from '../environment/environment';
+import { NotificationService } from './services/notification.service';
 
 @Component({
   selector: 'app-main-page',
@@ -16,13 +17,11 @@ export class MainPageComponent implements OnInit, OnDestroy{
   documentStyle = getComputedStyle(document.documentElement);
   env = environment;
   transcations = signal<transactionFE[] |undefined >(undefined)
-  activeIndex = 0;
-  accounts = signal<accountFE[]>([]);
   accountSelect = signal<accountFE| undefined >(undefined)
   onDestroy$ = new Subject<void>();
   data: any;
   options: any;
-  constructor(private route: ActivatedRoute,private api: ApiService, private cdf: ChangeDetectorRef, private router: Router)  {
+  constructor(private route: ActivatedRoute,private api: ApiService, private cdf: ChangeDetectorRef, private router: Router, private noti: NotificationService)  {
   }
 
   ngOnDestroy(): void {
@@ -30,6 +29,10 @@ export class MainPageComponent implements OnInit, OnDestroy{
         this.onDestroy$.complete();
     }
 
+    not(){
+      this.noti.showNotification()
+
+    }
   ngOnInit(): void {
     this.route.queryParamMap.subscribe(params => {
       const code = params.get('code');

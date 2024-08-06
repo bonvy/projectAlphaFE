@@ -1,5 +1,5 @@
 
-<p-card header="LOGIN" class="container">
+<p-card header="LOGIN" class="container" *transloco = "let t">
   @if(showError){
     <div class="card"  style="color: brown">
       Errore
@@ -10,7 +10,7 @@
     <form [formGroup]="form" (keydown.enter)="login()" >
       <p-floatLabel>
         <input pInputText formControlName="username" />
-        <label>Username</label>
+        <label>{{t('login-username')}}</label>
       </p-floatLabel>
 
       <p-floatLabel>

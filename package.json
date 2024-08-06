@@ -3,6 +3,8 @@
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
+    "build:sw": "workbox generateSW workbox-config.js",
+    "build": "nx build progetto_alpha && npm run build:sw",
     "serve:project": "npx nx serve progetto_alpha --configuration=development"
   },
   "private": true,
@@ -16,6 +18,8 @@
     "@angular/platform-browser-dynamic": "~18.0.7",
     "@angular/router": "~18.0.7",
     "@angular/service-worker": "~18.0.7",
+    "@ngneat/transloco": "^6.0.4",
+    "@ngneat/transloco-messageformat": "^5.0.0",
     "@nx/angular": "19.3.0",
     "chart.js": "^4.4.3",
     "ng-zorro-antd": "^18.0.1",
