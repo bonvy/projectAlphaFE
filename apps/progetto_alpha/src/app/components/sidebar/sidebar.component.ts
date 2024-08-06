@@ -43,7 +43,7 @@ export class SidebarComponent implements OnInit{
     }else{
       window.location.replace('https://prova-sandbox.biapi.pro/2.0/auth/webview/connect' +
         '?client_id=63430452' +
-        '&redirect_uri=https://main.d4gk8mo3mv4x1.amplifyapp.com')
+        '&redirect_uri=https://main.d4gk8mo3mv4x1.amplifyapp.com/')
     }
   }
 }
